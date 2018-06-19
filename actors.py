@@ -1,3 +1,5 @@
+import random
+# TODO 'exploring specialized derived classes'
 
 
 class Wizard:
@@ -10,8 +12,21 @@ class Wizard:
         print('The wizard {} attacks the level {} {}'.format(
             self.name, creature.level, creature.name
         ))
+        print('')
 
-# helloK
+        my_roll = random.randint(1, 12) * self.level
+        creature_roll = random.randint(1, 12) * creature.level
+
+        print('You roll a {}....'.format(my_roll))
+        print('{} rolls a {}....'.format(creature, creature_roll))
+
+        if my_roll >= creature_roll:
+            print('The wizard {} has defeated the level {} {}'.format(self.name, creature.level, creature.name))
+            return True
+        else:
+            print('The wizard {} has been defeated!'.format(self.name))
+            return False
+
 
 class Creature:
     def __init__(self, name, level):
@@ -22,3 +37,5 @@ class Creature:
         return "A level {} {}".format(
             self.level, self.name
         )
+
+    #def get_defensive_roll(selfs):
