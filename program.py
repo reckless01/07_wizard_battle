@@ -19,9 +19,10 @@ def print_header():
 def game_loop():
 
     creatures = [
-        SmallAnimal('Toad', 3),
-        Predator('Tiger', 9),
-        SmallAnimal('Bat', 4),
+        SmallAnimal('Toad', random.randint(1,10)),
+        Predator('Tiger', random.randint(5, 20)),
+        SmallAnimal('Bat', random.randint(1, 10)),
+        # TODO: Finish create randomness
         Dragon('Dragon', 30, 50, True),
         Wizard('Evil Wizard', 60)
     ]
