@@ -1,7 +1,7 @@
 import random
 import time
 
-from actors import Wizard, Creature
+from actors import Wizard, SmallAnimal, Dragon, Predator
 
 
 def main():
@@ -19,11 +19,11 @@ def print_header():
 def game_loop():
 
     creatures = [
-        Creature('Toad', 3),
-        Creature('Tiger', 9),
-        Creature('Bat', 4),
-        Creature('Dragon', 15),
-        Creature('Evil Wizard', 20)
+        SmallAnimal('Toad', 3),
+        Predator('Tiger', 9),
+        SmallAnimal('Bat', 4),
+        Dragon('Dragon', 30, 50, True),
+        Wizard('Evil Wizard', 60)
     ]
 
     # print(creatures)
@@ -51,10 +51,12 @@ def game_loop():
                 hero.name
             ))
             print('')
+            print('')
         elif cmd == 'l':
             print('The wizard, {}, takes in the surroundings and sees: '.format(
                 hero.name
             ))
+            print('')
             for c in creatures:
                 print(' * A level {} {} '.format(c.level, c.name))
         else:
