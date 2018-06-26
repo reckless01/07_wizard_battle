@@ -22,15 +22,23 @@ def game_loop():
         SmallAnimal('Toad', random.randint(1,10)),
         Predator('Tiger', random.randint(5, 20)),
         SmallAnimal('Bat', random.randint(1, 10)),
-        # TODO: Finish create randomness
-        Dragon('Dragon', 30, 50, True),
-        Wizard('Evil Wizard', 60)
+        Dragon('Dragon', random.randint(10, 60), random.randint(1, 30), random.choice([True, False])),
+        Wizard('Evil Wizard', random.randint(20, 60), random.randint(10, 80))
     ]
 
     # print(creatures)
     print('')
+    print('Welcome to Wizard Battles! Please enter player info below: ')
+    print('')
+    hero_name = input("What is your name? ")
+    hero_level = input("What is your experience like? ")
+    input_hp = input("How tough are ya? ")
+    print('input hp: ' ,input_hp)
 
-    hero = Wizard('Gandolf', 75)
+    hero_hp = random.randint(1, int(input_hp))
+    print('actual hp' , hero_hp)
+
+    hero = Wizard(str(hero_name), int(hero_level), int(hero_hp))
 
     while True:
 

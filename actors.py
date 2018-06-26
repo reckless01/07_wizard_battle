@@ -1,6 +1,6 @@
 import random
 # TODO add new creature classes
-# TODO add randomness to creature level
+# TODO add randomness to creature level **DONE**
 # TODO story board
 # TODO Add player input to start
 # TODO store player stats/hp/info
@@ -30,9 +30,9 @@ class Dragon(Creature):
     def get_defensive_roll(self):
         base_roll = super().get_defensive_roll()
         fire_modifier = 5 if self.breaths_fire else 1
-        scale_modifer = self.scale_thickness / 10
+        scale_modifier = self.scale_thickness / 10
 
-        return base_roll * fire_modifier * scale_modifer
+        return base_roll * fire_modifier * scale_modifier
 
 
 class SmallAnimal(Creature):
@@ -48,6 +48,11 @@ class Predator(Creature):
 
 
 class Wizard(Creature):
+    def __init__(self, name, level, hp):
+        super().__init__(name, level)
+        self.hp = hp
+        # TODO more features for player wizard and evil wizard
+        # self.beard_color = beard_color
 
     def attack(self, creature):
         print('')
@@ -57,7 +62,6 @@ class Wizard(Creature):
         print('')
 
         my_roll = random.randint(1, 12) * self.level
-        # creature_roll = random.randint(1, 12) * creature.level
         creature_roll = creature.get_defensive_roll()
 
         print('You roll a {}....'.format(my_roll))
