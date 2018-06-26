@@ -46,6 +46,8 @@ class Predator(Creature):
         base_roll = super().get_defensive_roll()
         return base_roll * 1.5
 
+# test
+
 
 class Wizard(Creature):
     def __init__(self, name, level, hp):
