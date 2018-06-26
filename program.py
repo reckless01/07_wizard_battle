@@ -26,19 +26,26 @@ def game_loop():
         Wizard('Evil Wizard', random.randint(20, 60), random.randint(10, 80))
     ]
 
-    # print(creatures)
     print('')
-    print('Welcome to Wizard Battles! Please enter player info below: ')
+    print('Welcome to Wizard Battles! Please enter player info below ')
     print('')
-    hero_name = input("What is your name? ")
-    hero_level = input("What is your experience like? ")
+    
+    name = input("What is your name? ")
+    hero_name = name.capitalize()
+    input_level = input("What is your experience like? ")
     input_hp = input("How tough are ya? ")
-    print('input hp: ' ,input_hp)
-
+    hero_level = random.randint(1, int(input_level))
     hero_hp = random.randint(1, int(input_hp))
-    print('actual hp' , hero_hp)
+    print('')
+    # print('input hp: ', input_hp)
+    print('actual hp', hero_hp)
+    # print('input xp: ', input_level)
+    print('actual xp: ', hero_level)
 
     hero = Wizard(str(hero_name), int(hero_level), int(hero_hp))
+    print('The adventure down a dark and misty path begins for {}, a level {} wizard......'.format(
+        hero_name, hero_level))
+    print('')
 
     while True:
 
@@ -46,19 +53,34 @@ def game_loop():
         print('A level {} {} has appeared from a dark and foggy forest...'.format(active_creature.level, active_creature.name))
         print('')
 
-        cmd = input('Do you [a]ttack, [r]un away, or [l]ook  around? ')
+        cmd = input('Do you [a]ttack, [r]un away, [l]ook  around, [s]tats? ')
         if cmd == 'a':
             if hero.attack(active_creature):
                 creatures.remove(active_creature)
             else:
-                print('The wizard runs and hides, taking time to recover....')
-                time.sleep(5)
+                # print('The wizard runs and hides, taking time to recover....')
+                # print(hero_hp)
+                hero_hp = hero_hp - 10
+
+                if hero_hp <= 0:
+                    print('================')
+                    print('    YOU DIED    ')
+                    print('================')
+                    break
+                else:
+                    pass
+                print('You have {} remaining hitpoints'.format(hero_hp))
+                print('The wizard, {}, takes damage, and runs to hide and recover...'.format(hero_name))
+                time.sleep(3)
                 print('The wizard return revitalized!')
                 print('')
         elif cmd == 'r':
             print('The wizard, {}, has become unsure of his power and flees!'.format(
                 hero.name
             ))
+            hero_hp = hero_hp + random.randint(1, 10)
+            print('The Wizard has fled, restoring some hp...')
+            print('{} hitpoints remaining'.format(hero_hp))
             print('')
             print('')
         elif cmd == 'l':
@@ -68,14 +90,20 @@ def game_loop():
             print('')
             for c in creatures:
                 print(' * A level {} {} '.format(c.level, c.name))
+        elif cmd == 's':
+            print('')
+            print('Currently {}, a level {} wizard, has {} hitpoints'.format(hero_name, hero_level, hero_hp))
+            print('')
         else:
             print('Exiting game...')
             break
 
         if not creatures:
-            print('')
-            print('You, {}, have defeated all the creatures! Congratulations player, well done!'.format(hero.name))
-            print('')
+            print('================================================================================================')
+            print('                                     Game over!                                                  ')
+            print('================================================================================================')
+            print('     You, {}, have defeated all the creatures! Congratulations player, well done!'.format(hero.name))
+            print('================================================================================================')
             break
 
 
