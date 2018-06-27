@@ -1,7 +1,7 @@
 import random
 import time
 
-from actors import Wizard, SmallAnimal, Dragon, Predator
+from actors import Wizard, MediumAnimal, SmallAnimal, Dragon, Predator
 
 
 def main():
@@ -20,8 +20,12 @@ def game_loop():
 
     creatures = [
         SmallAnimal('Toad', random.randint(1,10)),
-        Predator('Tiger', random.randint(5, 20)),
         SmallAnimal('Bat', random.randint(1, 10)),
+        SmallAnimal('Rabbit', random.randint(1, 10)),
+        MediumAnimal('Boar', random.randint(5, 15)),
+        MediumAnimal('Deer', random.randint(5, 15)),
+        Predator('Tiger', random.randint(5, 30)),
+        Predator('Panther', random.randint(5, 30)),
         Dragon('Dragon', random.randint(10, 60), random.randint(1, 30), random.choice([True, False])),
         Wizard('Evil Wizard', random.randint(20, 60), random.randint(10, 80))
     ]
@@ -32,10 +36,15 @@ def game_loop():
     
     name = input("What is your name? ")
     hero_name = name.capitalize()
-    input_level = input("What is your experience like? ")
-    input_hp = input("How tough are ya? ")
-    hero_level = random.randint(1, int(input_level))
-    hero_hp = random.randint(1, int(input_hp))
+    input_level = int(input("What is your experience like? "))
+    input_hp = int(input("How tough are ya? "))
+    i_m_lvl = input_level -20
+    i_max_lvl = input_level + 30
+    i_m_hp = input_hp - 20
+    i_max_hp = input_hp + 30
+
+    hero_level = random.randint(i_m_lvl, i_max_lvl)
+    hero_hp = random.randint(i_m_hp, i_max_hp)
     print('')
     # print('input hp: ', input_hp)
     print('actual hp', hero_hp)
@@ -109,3 +118,4 @@ def game_loop():
 
 if __name__ == '__main__':
     main()
+

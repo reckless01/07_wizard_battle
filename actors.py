@@ -5,6 +5,7 @@ import random
 # TODO Add player input to start
 # TODO store player stats/hp/info
 # TODO add unique player attributes
+# TODO organize player info into function
 
 
 class Creature:
@@ -39,6 +40,12 @@ class SmallAnimal(Creature):
     def get_defensive_roll(self):
         base_roll = super().get_defensive_roll()
         return base_roll / 2
+
+
+class MediumAnimal(Creature):
+    def get_defensive_roll(self):
+        base_roll = super().get_defensive_roll()
+        return base_roll
 
 
 class Predator(Creature):
